@@ -13,9 +13,6 @@ contract Dexoshi is ERC1155URIStorage {
     // Non-custodial addresses. Admin cannot transfer/burn on behalf of user
     mapping (address => bool) public hasCustody;
 
-    // keep track of last mint
-    mapping (address => uint256) public lastMint;
-
     constructor() ERC1155(DEFAULT_URI) {}
 
     /*
@@ -49,7 +46,6 @@ contract Dexoshi is ERC1155URIStorage {
         require(msg.sender == ADMIN, "Only admin can mint");
         // if this tokenId has never been minted, then set URI
         if (keccak256(abi.encodePacked(uri(_tokenId))) == keccak256(abi.encodePacked(DEFAULT_URI))) _setURI(_tokenId, _tokenURI);
-        lastMint[_to] = block.number;
         _mint(_to, _tokenId, _amount, "");
     }
 

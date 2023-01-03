@@ -234,6 +234,7 @@ contract ERC1155MetaTransactionMatic is ERC1155, ContextMixin, NativeMetaTransac
     /*
     * name: Dexoshi
     * uri: https://gitlab.com/dexoshi/metadata/-/raw/main/json/{id}.json
+    * uri: https://bafybeigjdnphukqz7scqwp3em5niqcupdispcjdoeqai6x2d7iypxkjexi.ipfs.nftstorage.link/{id}.json
     */
     constructor (string memory name_, string memory uri_) ERC1155(uri_) {
         name = name_;

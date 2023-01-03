@@ -225,8 +225,6 @@ contract ERC1155MetaTransactionMatic is ERC1155, ContextMixin, NativeMetaTransac
     // Admin is allowed to call functions on behalf of user
     address private ADMIN;
 
-    string private CONTRACT_URI;
-
     // Non-custodial addresses. Admin cannot transfer/burn on behalf of user
     mapping (address => bool) public hasCustody;
 
@@ -236,17 +234,11 @@ contract ERC1155MetaTransactionMatic is ERC1155, ContextMixin, NativeMetaTransac
     /*
     * name: Dexoshi
     * uri: https://gitlab.com/dexoshi/metadata/-/raw/main/json/{id}.json
-    * contractUri: https://gitlab.com/dexoshi/metadata/-/raw/main/contractMetadata/uri.json
     */
-    constructor (string memory name_, string memory uri_, string memory contractURI_) ERC1155(uri_) {
+    constructor (string memory name_, string memory uri_) ERC1155(uri_) {
         name = name_;
         _initializeEIP712(name);
         ADMIN = msg.sender;
-        CONTRACT_URI = contractURI_;
-    }
-
-    function contractURI() public view returns (string memory) {
-        return CONTRACT_URI;
     }
 
     /**
